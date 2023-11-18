@@ -12,13 +12,15 @@ def home():
 
 
 
-@app.route('/menu', methods=['post'])
+@app.route('/login', methods=['POST'])
 def login():
     login = request.form.get('login')
     password = request.form.get('password')
-    print(login)
-    print(password)
-    return redirect('/')
+    
+    if login == 'daniel' and password == 'lucasgay123':
+        return render_template("menu.html")
+    else:
+        return redirect('/')
 
 
 
