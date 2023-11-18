@@ -1,5 +1,5 @@
 class meu_banco:
-    def __init__(self, banco):
+    def __init__(self,banco):
         import sqlite3
         self.conexao = sqlite3.connect(banco)
         self.cursor = self.conexao.cursor()
