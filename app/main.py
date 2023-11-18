@@ -19,8 +19,8 @@ def login():
     
     if login == 'daniel' and password == 'lucasgay123':
         return render_template("menu.html")
-    else:
-        return redirect('/')
+    
+    return redirect('/')
 
 
 
