@@ -1,4 +1,4 @@
-class meu_banco:
+class bancod:
     def __init__(self,banco):
         import sqlite3
         self.conexao = sqlite3.connect(banco)
@@ -7,7 +7,7 @@ class meu_banco:
     def fecharDB(self):
         self.conexao.close()
 
-    def criarTabela(self):
+    def criarTabelacliente(self):
         sql = """
         CREATE TABLE IF NOT EXISTS clientes (
         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -18,7 +18,17 @@ class meu_banco:
         self.cursor.execute(sql)
         print('Tabela criada...')
 
-        
+    def criarTabelaitem(self):
+        sql = """
+        CREATE TABLE IF NOT EXISTS produtos (
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        Produto TEXT NOT NULL,
+        Quantidade INTEGER
+        );
+        """
+        self.cursor.execute(sql)
+        print('Tabela criada...')
+
 
     #ler tabela
     def selecionar(self):
