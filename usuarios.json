@@ -1,14 +1,10 @@
 [
     {
-        "login": "jose",
-        "password": "joselino123"
+        "login": "lucas",
+        "password": "lucas123"
     },
     {
         "login": "daniel",
         "password": "daniel123"
-    },
-    {
-        "login": "lucas",
-        "password": "lucas123"
     }
 ]

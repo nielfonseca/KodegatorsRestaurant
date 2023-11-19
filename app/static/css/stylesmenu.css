@@ -1,6 +1,8 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    color: black;
+    margin: 30px;
+    background-color:azure;
 }
 
 h1 {
@@ -26,14 +28,16 @@ ul {
     padding: 0;
 }
 
-li {
+li#body {
+
     margin-bottom: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
     padding: 10px;
     overflow: hidden;
     transition: box-shadow 0.3s ease; /* Adiciona uma transição suave */
     cursor:pointer;
-}
+    background-color: white;
+}    
 
 li:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Destaca ao passar o mouse */
@@ -57,19 +61,20 @@ img {
     padding-right: 10px; /* Ajuste o espaçamento conforme necessário */
 }
 
-.cart {
-    margin-top: 20px;
+#clear{
+    padding-bottom: 30px;
 }
 
-.cart h2 {
-    border-bottom: 2px solid #333;
+#rodape{
+    position:absolute;
+    bottom: 0;
 }
+nav {
+    position: absolute;
 
-#cart-items {
-    list-style-type: none;
-    padding: 0;
+
 }
-
-#cart-items li {
-    margin-bottom: 10px;
+nav li {
+    display: inline-block;
+    margin: 0 0 0 15px;    
 }

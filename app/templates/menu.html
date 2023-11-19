@@ -14,13 +14,17 @@
     </style>
 </head>
 <body>
-    <h1>Menu</h1>
+    <div class="header"> 
+        <picture>
+            <img src="../static/imagens/Logo1.png" alt="Logo dos codajacare">
+        </picture>    
+    </div>
     <div class="menu">
         <div class="food-column">
             <h2>Comidas</h2>
             <ul>
                 {% for food in foods %}
-                    <li>
+                    <li id="body">
                         <div class="item-content">
                             <div class="item-details">
                                 <strong>{{ food['item'] }}</strong>
@@ -39,12 +43,12 @@
             <h2>Bebidas</h2>
             <ul>
                 {% for drink in drinks %}
-                    <li>
+                    <li id="body">
                         <div class="item-content">
                             <div class="item-details">
                                 <strong>{{ drink['item'] }}</strong>
                                 <p>{{ drink['description'] }}</p>
-                                <p>Preço: R$ {{ drink['price'] }}</p>
+                                <p>{{ drink['price'] }}</p>
                             </div>
                             {% if drink['image'] %}
                                 <img src="{{ url_for('static', filename='uploads/' + drink['image']) }}" alt="Drink Image">
@@ -53,6 +57,13 @@
                     </li>
                 {% endfor %}
             </ul>
+            <div id="'clear"></div>
+        </div>
+        <div id="rodape">
+            <footer>
+                <p>Trabalho desenvolvido pela equipe <a href=""> Kodegator Devs </a></p>
+            </footer>
         </div>
 </body>
+
 </html>

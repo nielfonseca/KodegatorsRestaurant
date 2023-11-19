@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
-import os
+import os, json
 from PIL import Image
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'KODEGATOR'
 
 # Configurações para o upload de arquivos
 UPLOAD_FOLDER = 'app/static/uploads'
@@ -14,25 +15,88 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 foods = []
 drinks = []
 
+on = False
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
-def index():
-    return render_template('menu.html', foods=foods, drinks=drinks)
+def home():
+    global on
+    on = False
+    
+    return render_template('login.html')
+
+
+
+@app.route('/cadastros')
+def cadastros():
+
+    return render_template('cadastro.html')
+
+@app.route('/cadastro', methods=['POST'])
+def cadastro():
+    user = []
+    login = request.form.get('login')
+    password = request.form.get('password')
+
+    user= [
+        {
+            "login": login,
+            "password": password
+        }
+    ]
+    
+    with open('usuarios.json') as usuariosTemp:
+        usuarios = json.load(usuariosTemp)
+
+    newlogin = usuarios + user
+
+    with open('usuarios.json', 'w') as gravarTemp:
+        json.dump(newlogin, gravarTemp, indent=4)
+
+    return redirect('/')
+
+@app.route('/cardapio', methods=['POST'])
+def login():
+
+    global on
+
+    login = request.form.get('login')
+    password = request.form.get('password')
+
+    with open('usuarios.json') as usuariosTemp:
+        usuarios = json.load(usuariosTemp)
+        cont = 0
+
+        for usuario in usuarios:
+            cont += 1
+            if login == 'admin' and password == 'admin123':
+                on = True
+                return redirect('/admin')
+                
+
+            if usuario['login'] == login and usuario['password'] == password:
+                return render_template('menu.html', foods=foods, drinks=drinks)
+            if cont >= len(usuarios):
+                flash('USUARIO E SENHA INVALIDOS')
+                return redirect('/')
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     
     global foods, drinks
 
-    if request.method == 'POST':
-        # Se um preço for submetido, atualiza os preços
-        for food in foods:
-            food['price'] = request.form.get(f'food_{food["item"]}_price', food['price'])
-        for drink in drinks:
-            drink['price'] = request.form.get(f'drink_{drink["item"]}_price', drink['price'])
-    return render_template('menu_admin.html', foods=foods, drinks=drinks)
+    if on == True:
+        if request.method == 'POST':
+            # Se um preço for submetido, atualiza os preços
+            for food in foods:
+                food['price'] = request.form.get(f'food_{food["item"]}_price', food['price'])
+            for drink in drinks:
+                drink['price'] = request.form.get(f'drink_{drink["item"]}_price', drink['price'])
+        return render_template('menu_admin.html', foods=foods, drinks=drinks)
+    if on == False:
+        return redirect('/')
 
 
 @app.route('/add_item', methods=['POST'])
