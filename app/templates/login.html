@@ -11,13 +11,19 @@
   <h1><img src="../static/imagens/Logo1.png" alt="logo Kodegator"></h1>
   <p>Entre com seu login</p>
   <div id='form_fundo'>
-    <form method="post" action='/login'>
+    <form method="post" action='/cardapio'>
     <fieldset></fieldset>
     <fieldset>
       <label for="login" class="login">Digite seu Login: <input id="login" name="login" type="text"
                required /></label>
       <label for="password" class="senha">Digite sua senha: <input id="password" name="password"
                type="password" pattern="[a-z0-5]{8,}" required /></label>
+      {% set mensagem = get_flashed_messages() %}
+      {% if mensagem %}
+        <div class="flash_alerta">
+          {{mensagem[0]}}
+        </div>
+      {% endif %}
     </fieldset>
     <input type="submit" value="Login" />
     <p>Não é cliente? <a target='_blank' href="cadastro.html">Cadastre-se Aqui!</a></p>

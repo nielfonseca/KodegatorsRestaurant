@@ -9,16 +9,14 @@
 
 <body>
   <h1><img src="../static/imagens/Logo1.png" alt="logo Kodegator"></h1>
-  <p>Entre com seu login</p>
+  <p>ADMINISTRADOR</p>
   <div id='form_fundo'>
-    <form method="post" action='menu.html'>
+    <form method="post" action='/cadastro'>
     <fieldset></fieldset>
     <fieldset>
-      <label for="login" class="login">Crie seu Login: <input id="login" name="login" type="text"
+      <label for="login" class="login">Crie um Login: <input id="login" name="login" type="text"
                required /></label>
-      <label for="new-password" class="senha">Crie uma senha: <input id="new-password" name="new-password"
-               type="password" pattern="[a-z0-5]{8,}" required /></label>
-      <label for="new-password" class="senha">Digite sua senha novamente: <input id="new-password" name="new-password"
+      <label for="password" class="senha">Crie uma senha: <input id="password" name="password"
                type="password" pattern="[a-z0-5]{8,}" required /></label>
     </fieldset>
     <input type="submit" name='submit' value="Cadastrar" />
