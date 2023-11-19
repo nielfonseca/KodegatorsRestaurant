@@ -25,7 +25,6 @@ def login():
 
         for usuario in usuarios:
             cont += 1
-
             if login == 'admin' and password == 'admin123':
                 return redirect('/adm')
 
@@ -34,8 +33,8 @@ def login():
             if cont >= len(usuarios):
                 flash('USUARIO E SENHA INVALIDOS')
                 return redirect('/')
-
-
+            
+            
 @app.route('/cadastro', methods=['POST'])
 def cadastro():
     user = []
