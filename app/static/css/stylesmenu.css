@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.food-column, .drink-column {
+    width: 45%;
+}
+
+
+h2 {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+    padding: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease; /* Adiciona uma transição suave */
+    cursor:pointer;
+}
+
+li:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Destaca ao passar o mouse */
+}
+
+img {
+    max-width: 120px;
+    max-height: 120px;
+    display: block;
+    margin: 0 auto;
+}
+
+.item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Adiciona alinhamento vertical ao centro */
+}
+
+.item-details {
+    flex: 1;
+    padding-right: 10px; /* Ajuste o espaçamento conforme necessário */
+}
+
+.cart {
+    margin-top: 20px;
+}
+
+.cart h2 {
+    border-bottom: 2px solid #333;
+}
+
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+#cart-items li {
+    margin-bottom: 10px;
+}

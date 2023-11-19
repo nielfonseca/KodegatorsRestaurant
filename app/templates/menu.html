@@ -1,11 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
+    <link rel="stylesheet" href="../static/css/stylesmenu.css">
+    <title>Comida</title>
+    <style>
+        .food-image {
+            max-width: 120px;
+            max-height: 120px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>Menu</h1>
+    <div class="menu">
+        <div class="food-column">
+            <h2>Comidas</h2>
+            <ul>
+                {% for food in foods %}
+                    <li>
+                        <div class="item-content">
+                            <div class="item-details">
+                                <strong>{{ food['item'] }}</strong>
+                                <p>{{ food['description'] }}</p>
+                                <p>{{ food['price'] }}</p>
+                            </div>
+                            {% if food['image'] %}
+                                <img src="{{ url_for('static', filename='uploads/' + food['image']) }}" alt="Food Image">
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="drink-column">
+            <h2>Bebidas</h2>
+            <ul>
+                {% for drink in drinks %}
+                    <li>
+                        <div class="item-content">
+                            <div class="item-details">
+                                <strong>{{ drink['item'] }}</strong>
+                                <p>{{ drink['description'] }}</p>
+                                <p>Preço: R$ {{ drink['price'] }}</p>
+                            </div>
+                            {% if drink['image'] %}
+                                <img src="{{ url_for('static', filename='uploads/' + drink['image']) }}" alt="Drink Image">
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
 </body>
 </html>

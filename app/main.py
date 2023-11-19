@@ -10,6 +10,9 @@ def home():
     return render_template('login.html')
 
 @app.route('/adm')
+def adm():
+
+    return render_template('cadastro.html')
 
 @app.route('/cardapio', methods=['POST'])
 def login():
@@ -24,7 +27,7 @@ def login():
             cont += 1
 
             if login == 'admin' and password == 'admin123':
-                return render_template('cadastro.html')
+                return redirect('/adm')
 
             if usuario['login'] == login and usuario['password'] == password:
                 return render_template("menu.html")
@@ -54,7 +57,7 @@ def cadastro():
     with open('usuarios.json', 'w') as gravarTemp:
         json.dump(newlogin, gravarTemp, indent=4)
 
-    return render_template('login.html')
+    return redirect('/')
 
 if __name__ in "__main__":
     app.run(debug=True)
