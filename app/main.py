@@ -22,17 +22,15 @@ def login():
 
         for usuario in usuarios:
             cont += 1
-
             if login == 'admin' and password == 'admin123':
                 return render_template('cadastro.html')
-
             if usuario['login'] == login and usuario['password'] == password:
                 return render_template("menu.html")
             if cont >= len(usuarios):
                 flash('USUARIO E SENHA INVALIDOS')
                 return redirect('/')
-
-
+            
+            
 @app.route('/cadastro', methods=['POST'])
 def cadastro():
     user = []
