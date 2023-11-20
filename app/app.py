@@ -148,6 +148,15 @@ def remove_item():
 
     return redirect(url_for('admin'))
 
+@app.route('/kodegator')
+def kodegator():
+
+    return render_template('kodegator.html')
+
+@app.route('/contato')
+def contatos():
+
+    return render_template('contato.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
