@@ -6,7 +6,6 @@ from PIL import Image
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'KODEGATOR'
 
-# Configurações para o upload de arquivos
 UPLOAD_FOLDER = 'app/static/uploads'
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -75,12 +74,12 @@ def login():
                 on = True
                 return redirect('/admin')
                 
-
             if usuario['login'] == login and usuario['password'] == password:
                 return render_template('menu.html', foods=foods, drinks=drinks)
             if cont >= len(usuarios):
                 flash('USUARIO E SENHA INVALIDOS')
                 return redirect('/')
+            
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
@@ -89,7 +88,6 @@ def admin():
 
     if on == True:
         if request.method == 'POST':
-            # Se um preço for submetido, atualiza os preços
             for food in foods:
                 food['price'] = request.form.get(f'food_{food["item"]}_price', food['price'])
             for drink in drinks:
@@ -148,10 +146,9 @@ def remove_item():
 
     return redirect(url_for('admin'))
 
-@app.route('/kodegator')
+@app.route('/kodegator', methods=["POST"])
 def kodegator():
-
-    return render_template('kodegator.html')
+    return redirect('kodegator.html')
 
 @app.route('/contato')
 def contatos():
